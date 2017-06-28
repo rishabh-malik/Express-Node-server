@@ -21,6 +21,11 @@ app.use((req,res,next) => {
     next();
 });
 
+//
+app.use((req,res,next) => {
+res.render('maintainence.hbs');
+});
+
 //helper is a func which can be used in templates
 hbs.registerHelper('getCurrentYear',()=>{
  return new Date().getFullYear()
