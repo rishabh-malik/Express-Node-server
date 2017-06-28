@@ -9,7 +9,6 @@ const fs=require('fs')
 // partials are partial templates common to templates so that code is in one place
 hbs.registerPartials(__dirname+'/views/partials');
 app.set('view engine','hbs');
-app.use(express.static(__dirname+'/public'));
 
 //express middlewares
 app.use((req,res,next) => {
@@ -21,10 +20,12 @@ app.use((req,res,next) => {
     next();
 });
 
-//
-app.use((req,res,next) => {
-res.render('maintainence.hbs');
-});
+//using express middleware to create maintainence page
+// app.use((req,res,next) => {
+// res.render('maintainence.hbs');
+// });
+
+app.use(express.static(__dirname+'/public'));
 
 //helper is a func which can be used in templates
 hbs.registerHelper('getCurrentYear',()=>{
