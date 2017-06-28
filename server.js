@@ -4,7 +4,8 @@ const hbs = require('hbs')
 const app = express()
 //logging messages to file
 const fs=require('fs')
-
+//store the port which we will be using
+const port=process.env.PORT || 3000; 
 
 // partials are partial templates common to templates so that code is in one place
 hbs.registerPartials(__dirname+'/views/partials');
@@ -53,6 +54,6 @@ app.get('/about',function(req,res){
 })
 
 // to bind the application to listen to ports
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!')
+app.listen(port, function () {
+  console.log(`Example app listening on port ${port}`);
 })
