@@ -2,7 +2,8 @@ const express = require('express')
 const hbs = require('hbs')
 //to create an app
 const app = express()
-
+//logging messages to file
+const fs=require('fs')
 
 
 // partials are partial templates common to templates so that code is in one place
@@ -13,7 +14,10 @@ app.use(express.static(__dirname+'/public'));
 //express middlewares
 app.use((req,res,next) => {
     var now=new Date().toString();
-    console.log(`${now}: ${req.method} ${req.url}`);
+    var log=`${now}: ${req.method} ${req.url}`;
+    console.log(log);
+    //appending the logs of the user to the file
+    fs.appendFile('server.log',log +'\n');
     next();
 });
 
