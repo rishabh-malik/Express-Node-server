@@ -3,10 +3,19 @@ const hbs = require('hbs')
 //to create an app
 const app = express()
 
+
+
 // partials are partial templates common to templates so that code is in one place
 hbs.registerPartials(__dirname+'/views/partials');
 app.set('view engine','hbs');
 app.use(express.static(__dirname+'/public'));
+
+//express middlewares
+app.use((req,res,next) => {
+    var now=new Date().toString();
+    console.log(`${now}: ${req.method} ${req.url}`);
+    next();
+});
 
 //helper is a func which can be used in templates
 hbs.registerHelper('getCurrentYear',()=>{
